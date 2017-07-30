@@ -1,0 +1,31 @@
+TODO List Parser
+================
+
+Tests
+-----
+
+```
+python3 -m unittest tests
+```
+
+Rules
+-----
+
+* rules are simple regex pattern
+* A <text> named group can be used to extract content
+
+
+Assumptions
+-----------
+
+* Biggest assumption made: there are no 3rd party parsing libraries in existence
+* For now, the only way to start to-do list is with a section
+* For now, we assume that the syntax of to-do list text is safe, so no syntax checking is necessary
+* All output HTML is inside an `<html>` element?
+
+Roadmap
+-------
+
+We might want to allow nested lists, add ability to emphasize pieces
+of text, maybe even add links to resources elsewhere, add new markup for adding
+styles, etc.
