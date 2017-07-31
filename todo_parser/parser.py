@@ -1,6 +1,3 @@
-"""
-The todo text parser
-"""
 import re
 
 from .element_tree import Element, ElementTree
@@ -50,6 +47,20 @@ class Parser:
 
         return tree
 
+    @classmethod
+    def get_todo_parser(cls):
+        section_rule = Rule(r'(?P<text>==.*==\n(\*.*\n)+)\n', 'section')
+        header_rule = Rule(r'==(?P<text>.*)==', 'h2')
+        list_rule = Rule(r'(?P<text>(\*.*\n)+)\n', 'ol')
+        item_rule = Rule(r'\* (?P<text>.*)\n', 'li')
+
+        return cls([
+            section_rule,
+            header_rule,
+            list_rule,
+            item_rule
+        ])
+
 
 class Rule:
     def __init__(self, pattern, tag_name):
@@ -59,12 +70,6 @@ class Rule:
 
     def __repr__(self):
         return "<Rule pattern=%s, tag=%s>" % (self.pattern, self.tag_name)
-
-    #TODO: use callback instead of simple tag name
-    def evaluate(self, content):
-        el = Element(tag=self.tag_name)
-        el.text = content
-        return el
 
     def search(self, expression):
         return self.regex.search(expression)

@@ -22,6 +22,7 @@ Assumptions
 * For now, the only way to start to-do list is with a section
 * For now, we assume that the syntax of to-do list text is safe, so no syntax checking is necessary
 * All output HTML is inside an `<html>` element?
+* Markup files end with two newlines!
 
 Roadmap
 -------
