@@ -4,7 +4,8 @@ from xml.etree import ElementTree as ET
 
 from .parser import Parser
 
-if __name__ == "__main__":
+
+def cli():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--toHtml', help="markup file")
 
@@ -18,3 +19,7 @@ if __name__ == "__main__":
     xml_root = tree.build()
 
     ET.dump(xml_root)
+
+
+if __name__ == "__main__":
+    cli()

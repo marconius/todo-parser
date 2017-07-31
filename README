@@ -1,32 +1,43 @@
 TODO List Parser
 ================
 
-Tests
+Thank you for taking the time to evaluate my partial solution to the "Todo lists!" problem.
+
+Only the `--toHtml` option is available. It is mostly complete, and relies on some assumptions listed below.
+
+The main difficulty with this implementation was the initial idea of creating an abstract parser from scratch.
+Undoubtedly, more of the tasks would be complete had time been spent on defining a formal todo markup grammar, and
+employing a third-party parser generator instead.
+
+Nevertheless, I am proud of some parts of the code, for instance the (non-standard) grammar builder using "rules".
+
+
+How to install and run from a virtaulenv
+------------
+
+Requires Python 3.X
+
+
+```
+$ git clone https://github.com/marconius/todo-parser.git
+$ cd todo-parser
+$ virtualenv -p python3 venv
+$ . venv/bin/activate
+$ pip install .
+$ todo-parser --toHtml tests/todoMarkup
+```
+
+How to run automated tests
 -----
 
 ```
-python3 -m unittest tests
+$ python3 -m unittest tests
 ```
-
-Rules
------
-
-* rules are simple regex pattern
-* A <text> named group can be used to extract content
-
 
 Assumptions
 -----------
 
-* Biggest assumption made: there are no 3rd party parsing libraries in existence
-* For now, the only way to start to-do list is with a section
-* For now, we assume that the syntax of to-do list text is safe, so no syntax checking is necessary
-* All output HTML is inside an `<html>` element?
-* Markup files end with two newlines!
-
-Roadmap
--------
-
-We might want to allow nested lists, add ability to emphasize pieces
-of text, maybe even add links to resources elsewhere, add new markup for adding
-styles, etc.
+* The syntax of to-do list text is safe, so no syntax checking is necessary
+* All output HTML is inside an `<html>` element
+* Markup files end with two newlines. (this is because parser attempts to break the markup into smaller and smaller
+  pieces uses regex, which can make it difficult to distinguish between elements and subelements)
